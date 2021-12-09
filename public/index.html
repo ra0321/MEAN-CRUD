@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="myfirstmean">
+
+<head>
+  <meta charset="UTF-8">
+  <title>MEAN CRUD</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>CONTACT LIST</h1>
+        <hr/>
+        <table class="table table-striped" style="margin-top:30px;">
+          <thead>
+            <tr>
+              <th style="text-align:center;">Name</th>
+              <th style="text-align:center;">Email</th>
+              <th style="text-align:center;">Actions</th>
+            </tr>
+          </thead>
+          <tbody ng-controller="addcontrolle">
+            <tr>
+                <td>
+                  <div class="form-group">
+                    <input type="text" placeholder="Enter Name" class="form-control" ng-model="contact.name">
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input type="text" placeholder="Enter Email" class="form-control" ng-model="contact.email">
+                  </div>
+                </td>
+                <td>
+                  <center>
+                      <button class="btn btn-warning" ng-click="addData()">Create Contact</button>
+                  </center>
+                </td>
+                <td>
+                  <center>
+                      <button class="btn btn-info" ng-click="edit()">Update Contact</button>
+                  </center>
+                </td>
+            </tr>
+            <tr ng-repeat="contact in contactlist">
+              <td style="text-align:center;">{{contact.name}}</td>
+              <td style="text-align:center;">{{contact.email}}</td>
+              <td  style="text-align:center;">
+                <center>
+                  <button type="button" class="btn btn-danger" ng-click="remove(contact._id)">Delete</button>
+                </center>
+              </td>
+              <td  style="text-align:center;">
+                <center>
+                  <button type="button" class="btn btn-success" ng-click="update(contact._id)">Update</button>
+                </center>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+    <script  type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="controllers/main.controller.js"></script>
+  </body>
+
+  </html>
