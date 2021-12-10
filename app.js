@@ -16,9 +16,9 @@ var mongoose = require('mongoose');
 //connection og MongoDB
 var conn = mongoose.connect('localhost:27017/myapp');
 
-if(conn){
+if (conn) {
   console.log('MongoDB Connected');
-}else{
+} else {
   console.log('MongoDB NOT Connected');
 }
 
@@ -40,41 +40,41 @@ app.use('/', index);
 app.use('/users', users);
 
 //view requests
-app.post('/contactlists',function(req,res){
-  console.log(">>>> "+req.body);
+app.post('/contactlists', function(req,res) {
+  console.log(">>>> " + req.body);
   var userTable = new User(req.body);
-  userTable.save(function(err,docs){
+  userTable.save(function(err, docs) {
     console.log(docs);
     res.json(docs);
   })
 });
 
-app.get('/contactlists',function(req,res){
+app.get('/contactlists', function(req, res) {
   User.find(function(err,docs){
     //console.log(docs);
     res.json(docs)
   })
 });
 
-app.delete('/contactlists/:id',function(req,res){
+app.delete('/contactlists/:id', function(req, res) {
   var id = req.params.id;
   //console.log(id);
-  User.remove({ _id: id },function(err,doc){
+  User.remove({ _id: id }, function(err, doc) {
     res.json(doc);
   })
 })
 
-app.get('/contact/:id',function(req,res){
+app.get('/contact/:id', function(req, res) {
   var id = req.params.id;
-  User.findOne({_id:id},function(err,doc){
+  User.findOne({_id:id}, function(err, doc) {
     res.json(doc);
   });
 });
 
-app.put('/contactlists/:id',function(req,res){
+app.put('/contactlists/:id', function(req, res) {
   var id = req.params.id;
   //console.log(req.body.name);
-  User.findOneAndUpdate({_id:id},{$set:{name:req.body.name,email:req.body.email}}, {new: true}, function(err, doc){
+  User.findOneAndUpdate({_id: id}, {$set: {name: req.body.name, email: req.body.email}}, {new: true}, function(err, doc) {
     res.json(doc);
   });
 });
