@@ -10,7 +10,7 @@ app.controller('addcontrolle', function($scope, $http) {
     });
   };
 
- refresh();
+  refresh();
   //
   $scope.addData = function() {
     $http.post("/contactlists", $scope.contact).then(function(response) {
